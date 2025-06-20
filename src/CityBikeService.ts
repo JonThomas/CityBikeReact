@@ -17,9 +17,11 @@ export const fetchMergedData = async () => {
 };
 
 export const mergeData = (stations: Station[], statuses: StationStatus[]) => {
-  // custom merge logic depending on shape
+  
   return stations.map((station) => {
     const status = statuses.find((s) => s.station_id === station.station_id);
+    // Using the spread operator to copy all properties from the station object 
+    // into a new station objects to avoid mutation, and add the status to it
     return { ...station, status: status ? status : null };
   });
 };
