@@ -22,10 +22,12 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <StationFetcher />
+        <StationFetcher />  
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        The information above is fetched from <a target="_blank" href="https://oslobysykkel.no/apne-data/sanntid">https://oslobysykkel.no/apne-data/sanntid</a>, specifically:&nbsp; 
+        <a target="_blank" href="https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json">https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json</a> for listing stations, and&nbsp;
+        <a target="_blank" href="https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json">https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json</a> for the status of each station.
       </p>
     </>
   )

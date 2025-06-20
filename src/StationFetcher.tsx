@@ -1,29 +1,24 @@
 import { useState, useEffect } from 'react';
+import type { Station } from './types/Station';
+import { fetchMergedData } from './CityBikeService';
 
 const StationFetcher = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState<Station[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-
-    fetch('https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json')
-      .then((response) => response.json())
+  useEffect(() => {
+    fetchMergedData()
       .then((data) => {
-        const sortedStations = data.data.stations.sort((a: {name: string}, b: {name: string}) => a.name.localeCompare(b.name));
-        setData(sortedStations);
+        const sortedStations = data.sort((a: {name: string}, b: {name: string}) => a.name.localeCompare(b.name));
+        setData(sortedStations as Station[]);
         setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
-      });   
-    }, []);
-
-  interface Station {
-    station_id: string;
-    name: string;
-  }
+      });
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -31,26 +26,20 @@ const StationFetcher = () => {
   return (
     <div>
       <h1>API Data</h1>
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      {/* <ul>
-        {data &&
-          (data as Station[]).map((station) => (
-            <div key={station.station_id}>
-              <strong>{station.name}</strong>: fdsa
-            </div>
-          ))}
-      </ul> */}
-
       <table>
         <thead>
           <tr>
-            <th>Station Id</th><th>Station name</th>
+            <th>Station name</th>
+            <th>Number of available bikes</th>
+            <th>Empty spots</th>
           </tr>
         </thead>
         <tbody>
           {data && (data as Station[]).map((station) => (
             <tr key={station.station_id}>
-              <td>{station.station_id}</td><td>{station.name}</td>
+              <td>{station.name}</td>
+              <td>{station.status.num_bikes_available}</td>
+              <td>{station.status.num_docks_available}</td>
             </tr>
           ))}
         </tbody>
