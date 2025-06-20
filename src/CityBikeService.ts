@@ -16,7 +16,7 @@ export const fetchMergedData = async () => {
   return mergeData(rawStations.data.stations, rawStationStatus.data.stations);
 };
 
-const mergeData = (stations: Station[], statuses: StationStatus[]) => {
+export const mergeData = (stations: Station[], statuses: StationStatus[]) => {
   // custom merge logic depending on shape
   return stations.map((station) => {
     const status = statuses.find((s) => s.station_id === station.station_id);
