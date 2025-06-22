@@ -25,7 +25,6 @@ const StationFetcher = () => {
 
   return (
     <div>
-      <h1>API Data</h1>
       <table>
         <thead>
           <tr>
