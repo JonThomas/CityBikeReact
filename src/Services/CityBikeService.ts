@@ -1,5 +1,5 @@
-import type { Station } from './types/Station';
-import type { StationStatus } from './types/StationStatus';
+import type { Station } from '../types/Station';
+import type { StationStatus } from '../types/StationStatus';
 
 const header = {
   'Client-Identifier': 'JonThomasEliassen-CityBikeReact',

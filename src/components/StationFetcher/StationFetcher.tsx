@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import type { Station } from './types/Station';
-import { fetchMergedData } from './CityBikeService';
+import type { Station } from '../../types/Station';
+import { fetchMergedData } from '../../services/CityBikeService';
 
 const StationFetcher = () => {
   const [data, setData] = useState<Station[] | null>(null);
