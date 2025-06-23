@@ -3,6 +3,17 @@ import './StationFetcher.css';
 import type { Station } from '../../types/Station';
 import { fetchMergedData } from '../../services/CityBikeService';
 
+/**
+ * A React component that fetches and displays a list of city bike stations.
+ * 
+ * This component:
+ * - Fetches station data from the `fetchMergedData` service.
+ * - Sorts the stations alphabetically by name.
+ * - Displays a html table, including the station name, number of available bikes, and empty spots.
+ * 
+ * @component
+ * @returns {JSX.Element} A table displaying the station data.
+ */
 const StationFetcher = () => {
   const [data, setData] = useState<Station[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
