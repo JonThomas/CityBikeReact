@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './StationFetcher.css';
 import type { Station } from '../../types/Station';
 import { fetchMergedData } from '../../services/CityBikeService';
 
